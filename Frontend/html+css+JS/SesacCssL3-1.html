@@ -1,0 +1,40 @@
+<!-- 상속 활용하기 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer-box {
+        width: 400px;
+        height: 200px;
+        border: 2px solid black;
+      }
+
+      /* 첫 번째 자식 Div만 선택 */
+      .outer-box > div:first-child {
+        color: red;
+        text-align: center;
+      }
+
+      /* width, height는 상속 받지는 않으나 상대 크기를 사용할 수 있다 */
+      .inner-box {
+        width: 50%;
+        height: 50%;
+        border: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer-box">
+      <div>
+        <span>첫 번째</span>
+      </div>
+      <div class="inner-box">
+        <span>두 번째</span>
+      </div>
+    </div>
+  </body>
+</html>
