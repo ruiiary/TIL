@@ -1,0 +1,67 @@
+<!-- Float 레이아웃을 활용한 마크업하기 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Float 레이아웃을 활용한 마크업하기</title>
+    <style>
+      .float-layout {
+      }
+      article {
+        width: 60%;
+        float: left;
+      }
+      aside {
+        width: 40%;
+        float: right;
+      }
+      aside::after {
+        content: ""; /*Clearfix 역할*/
+        display: block;
+        clear: both; /*float 해제*/
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Apparel Shop</h1>
+    <div class="float-layout">
+      <article>
+        <h2>Our Product</h2>
+        <h3>T-shirt</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta minima
+          hic aut, veritatis quisquam eaque non expedita in suscipit eius labore
+          iure nulla. Enim quasi distinctio nemo? Obcaecati, temporibus numquam.
+        </p>
+        <h3>Slacks</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi error
+          in at vitae necessitatibus! Magni deleniti ducimus iure eveniet at
+          repellat odio dignissimos in corrupti quaerat nulla, itaque facere
+          minus.
+        </p>
+        <h3>Shoes</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quis.
+          Blanditiis quidem debitis neque doloribus voluptas fugiat aperiam
+          dolorem corrupti, sit, quibusdam aspernatur natus suscipit atque
+          voluptate id sequi dignissimos!
+        </p>
+      </article>
+
+      <aside>
+        <h2>Detail</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia cum
+          repudiandae suscipit ullam minus animi ipsum, saepe ipsa! Veritatis,
+          earum accusantium nostrum quae possimus amet molestiae omnis optio
+          dolor perferendis?
+        </p>
+      </aside>
+    </div>
+    <footer>
+      <h4>Copyright Yoonseo Jeon</h4>
+    </footer>
+  </body>
+</html>
