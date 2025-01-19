@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹페이지 종합 실습</title>
+    <style>
+      /* :root {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      } */
+      .TotalContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+      }
+      .LabContainer {
+        background-color: #f5f5f5;
+        box-shadow:
+          0 4px 7px rgba(0, 0, 0, 0.07),
+          0 2px 4px rgba(0, 0, 0, 0.07);
+        border-radius: 10px;
+        padding: 10px;
+        padding-bottom: 30px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .counterWrapper {
+        background-color: rgb(238, 238, 255);
+        border-radius: 10px;
+        padding-top: 7px;
+        padding-bottom: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 210px;
+        box-shadow:
+          0 4px 7px rgba(0, 0, 0, 0.07),
+          0 2px 4px rgba(0, 0, 0, 0.07);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+      .span1 {
+        display: none;
+        font-size: 12px;
+        margin-top: 10px;
+        color: rgb(199, 199, 240);
+      }
+      .flexContainer {
+        display: flex;
+        gap: 5px;
+        width: 202px;
+        justify-content: center;
+        text-align: center;
+      }
+      button {
+        border: 0;
+        border-radius: 20px;
+        padding: 5px 12px;
+        background-color: #d6d6d6;
+        color: white;
+        box-shadow: 2px 2px rgba(256, 256, 256, 0.05);
+      }
+      .resetBtn{
+        background-color: rgb(199, 199, 240);
+      }
+      .DogButton {
+        background-color: rgb(199, 199, 240);
+      }
+      hr {
+        border: 0.01px solid #ccc;
+      }
+      .p1 {
+        border: 1.8px solid white;
+        text-align: center;
+        padding: 7px 10px;
+        padding-top: 10px;
+        width: 180px;
+        background-color: rgb(221, 221, 253);
+        font-weight: bold;
+        font-size: 20px;
+        transition: 1s;
+        color: #111;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      h3 {
+        width: 240px;
+        color: #353535;
+        font-size: 1rem;
+      }
+      h2 {
+        color: white;
+        font-size: 1.25rem;
+        text-align: center;
+        margin-top: 20px;
+        font-weight: 500;
+        background-color: rgb(199, 199, 240);
+        border-radius: 30px;
+        padding: 8px 10px;
+        width: 200px;
+      }
+      .ImageToggle {
+        display: none;
+        border-radius: 10px;
+        width: 80%;
+      }
+      .centerDiv {
+        display: flex;
+        justify-content: center;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centerDiv">
+      <h2>&lt;WEB PAGE 종합 실습&gt;</WEB></h2>
+    </div>
+    
+    <div class="TotalContainer">
+      <!-- 1 -->
+      <div class="LabContainer">
+        <h3>수동 카운터</h3>
+        <div class="counterWrapper">
+          <p class="p1">0</p>
+          <div class="flexContainer">
+            <button class="btn">PLUS</button>
+            <button class="minusBtn">MINUS</button>
+            <button class="resetBtn">Reset</button>
+          </div>
+          <span class="span1">더 이상 증가시킬 수 없어요.</span>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="LabContainer">
+        <h3>자동 카운터</h3>
+        <p class="p2">0</p>
+        <span>10이 되면 멈춥니다!</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="LabContainer">
+        <h3>Lotto</h3>
+        <h3 class="LottoNumber"></h3>
+        <script ></script>
+        <script>
+          // 위의 CDN import 를 통해 _ (underscore) 식별자 사용가능
+
+          
+        </script>
+      </div>
+      <!-- 4 -->
+      <div class="LabContainer">
+        <h3>Dog Image</h3>
+        <button class="DogButton">GET DOG IMAGE</button>
+        <hr/>
+        <img class="ImageToggle" src="" alt=""/>
+        
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script>
+      // 1
+      const btnPlus = document.querySelector(".btn"); // btn을 찍기
+      const btnReset = document.querySelector(".resetBtn");
+      const btnMinus = document.querySelector(".minusBtn");
+      const p1 = document.querySelector(".p1");
+      const span1 = document.querySelector(".span1");
+
+      // 리팩토링 : 콜백함수 하나로 적용하기
+      const changeBtn = function (behaviour) {
+        let cnt = parseInt(p1.innerText);
+        if (behaviour === "plus") {
+          if (cnt < 10) {
+            cnt++;
+            p1.innerText = cnt;
+          } else {
+            span1.style.display = "flex";
+          }
+        } else if (behaviour === "minus") {
+          if (cnt < 11) {
+            cnt--;
+            p1.innerText = cnt;
+          } else {
+            span1.style.display = "flex";
+          }
+        } else if (behaviour === "reset") {
+          cnt = 0;
+          p1.innerText = cnt;
+          span1.style.display = "none";
+        }
+      };
+
+      btnPlus.addEventListener("click", () => changeBtn("plus"));
+      btnMinus.addEventListener("click", () => changeBtn("minus"));
+      btnReset.addEventListener("click", () => changeBtn("reset"));
+      // 콜백함수에 인자가 있을 때, btnPlus.addEventListener("click", changeBtn("plus")) 이렇게 쓰면 안 됨!!
+      // changeBtn("plus") -> 이렇게 쓰면 실행이 될 것이기 때문에 값이 나옴!(changeBtn에는 Return 값이 없기 때문에 여기서는 undefined가 나올 것임) -> "함수" 그 자체로 전달해야 함!((behavior) => {changeBtn(behavior)})
+      
+
+      // 2
+
+
+
+      // 3
+      const LottoNumber = document.querySelector('.LottoNumber'); 
+      const makeLottoNum = () => {
+        _.makeLottoNum(_.sample(_.range(1, 46)), 6);
+      }
+
+      for (let num of lottoNums) {
+        document.write(`<h2>${num}</h2>`);
+      }
+
+      // 4
+      const ApiUrl =  "https://dog.ceo/api/breeds/image/random";
+      const ImageToggle = document.querySelector('.ImageToggle');
+      const DogBtn = document.querySelector('.DogButton');
+      const getImage = function() {
+        axios 
+          .get(ApiUrl)
+          .then((response) => {
+          console.log(response.data.message);
+          let ImgUrl = response.data.message;
+          ImageToggle.src = ImgUrl;
+          ImageToggle.style.display = "block";
+        })
+        .catch((error)=> {
+          console.error(error);
+        })
+      }
+      
+      DogBtn.addEventListener('click', getImage);
+      
+      //5
+
+
+    </script>
+  </body>
+</html>

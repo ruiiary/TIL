@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>원래 제목</h1>
+    <p>hi</p>
+    <div class="container">
+      <p id="first">첫 번째 문단</p>
+      <p class="second">두 번째 문단</p>
+    </div>
+    <script>
+      const hiP = document.querySelector("p");
+      console.log(hiP.style); // CSSStyleDeclaration '객체'가 들어있음!
+      hiP.style.color = "red"; // 객체(p) 안의 객체(style)안의 속성(color) 지정
+
+      const heading = document.querySelector("h1");
+      console.log(heading.textContent); // 원래 제목
+
+      heading.textContent = "새로운 제목"; // 속성 변경 가능 -> 웹 화면에도 변경이 적용됨
+      console.log(heading.textContent); // 원래 제목
+
+      const firstParagraph = document.querySelector("#first"); // <p id="first">첫 번째 문단</p> 라고 console에 나옴 (자바스크립트의 객체)
+      // html 코드를 객체로 볼 수 있게 됨!    html 요소들이 하나의 노드이고 노드화해서 객체라고 생각하고, 객체지향 언어인 JS에서는
+      // Obj {
+      //   id: "link",
+      //   href: "www."
+      //   fc: ddd,
+      // }
+      // 이렇게 오브젝트가 있음
+      console.log(firstParagraph); // 첫 번째 문단
+
+      const secondParagraph = document.querySelector(".second");
+      console.log(secondParagraph.textContent); // 두 번째 문단
+    </script>
+  </body>
+</html>
