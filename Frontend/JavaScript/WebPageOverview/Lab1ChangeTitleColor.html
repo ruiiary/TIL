@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web 페이지 종합 실습 - 제목의 색상 바꾸기</title>
+  </head>
+  <body>
+    <h2>Change My Color</h2>
+    <label for="change-color-input">원하는 색상을 영어로 입력하세요.</label>
+    <input id="change-color-input" />
+    <script>
+      InputTag = document.querySelector("#change-color-input"); // 1. input Event 감지
+      H2Tag = document.querySelector("h2");
+
+      // 2. input 내 EL의 콜백 함수의 역할 -> h2를 찝고(select)하고 얘의 생각이 바뀌어야 함
+      const changeColor = function (event) {
+        console.log(event.target.value);
+        H2Tag.style.color = event.target.value; // 3. style 바꾸기 .styld.color를 input 값으로 바뀐다.
+      };
+
+      InputTag.addEventListener("input", changeColor);
+      //InputTag.addEventListener("change", changeColor);
+    </script>
+  </body>
+</html>

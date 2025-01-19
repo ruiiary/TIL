@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      .active {
+        color: red;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="my-element" class="inactive">내용</div>
+
+    <script>
+      const element = document.querySelector("#my-element");
+
+      // 노드 객체의 클래스 목록에 새로운 클래스(active) 추가 => 클래스 리스트에 active를 넣었는데, 이 active가 글자를 빨간색으로 만드는 코드를 가지고 있었기 때문에 빨간색으로 변한 것!
+      element.classList.add("active");
+      console.log(element.classList);
+
+      // // 클래스 목록에서 클래스 제거
+      // element.classList.remove("inactive");
+
+      // 클래스 토글
+      // 클래스 목록에 클래스가 없으면 추가
+      // 클래스 목록에 클래스가 있으면 제거
+      element.classList.toggle("hidden");
+
+      // 클래스 포함 여부 확인 -> 원래 이렇게 하는 게 정석이지만, 귀찮으니깐 .toggle 메서드 사용! 
+      if (element.classList.contains("active")) {
+        console.log("활성화 상태입니다.");
+      }
+
+      // console.log(element.classList);
+      // /**
+      //   {
+      //     "0": "active",
+      //     "1": "hidden"
+      //   }
+      // **/
+    </script>
+  </body>
+</html>
